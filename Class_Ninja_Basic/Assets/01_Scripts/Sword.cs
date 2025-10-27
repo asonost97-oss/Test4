@@ -9,6 +9,10 @@ public class Sword : MonoBehaviour
 
     public float damageCooldown = 0.5f;
 
+    public float rotationSpeed = -100f;
+
+    Transform tr;
+
     //이미 맞은 몬스터 // 중복 데미지 방지
     private List<Collider2D> hitMonster = new List<Collider2D>();
 
@@ -44,12 +48,12 @@ public class Sword : MonoBehaviour
 
     void Start()
     {
-        
+        tr = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        tr.Rotate(0, 0, rotationSpeed * Time.deltaTime);
     }
 }
