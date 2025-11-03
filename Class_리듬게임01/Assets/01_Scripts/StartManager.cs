@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartManager : MonoBehaviour
@@ -50,6 +51,15 @@ public class StartManager : MonoBehaviour
                 playerAudio.PlayOneShot(selectAudioClips[selecNum]);
             }
         }
+    }
+
+    public void LoadingBtn()
+    {
+        musicNum = selecNum;
+
+        musicName = musicSelects[selecNum].transform.GetChild(1).GetComponent<Text>().text;
+
+        SceneManager.LoadScene("Loading");
     }
 
     
