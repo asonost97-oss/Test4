@@ -241,9 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfbc8e1a12b0034d8e3a6a694b56ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.05
   BulletPrefab: {fileID: 3767040240539319269, guid: fea22ea90087f9445b3df63bc41baf42, type: 3}
-  BulletSpeed: 0.5
+  BulletSpeed: 500
 --- !u!212 &1934355981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -308,8 +308,8 @@ Transform:
   m_GameObject: {fileID: 1934355979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9194, y: 0.1945, z: 0}
-  m_LocalScale: {x: 8.994, y: 7.7555, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
