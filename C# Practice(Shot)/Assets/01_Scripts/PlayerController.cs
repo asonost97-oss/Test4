@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
     public float speed = 0.1f;
+    float health = 100f;
+
     public GameObject BulletPrefab;
+
     public float BulletSpeed;
 
     void Update()
@@ -39,6 +43,38 @@ public class PlayerController : MonoBehaviour
                 // Bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BulletSpeed * (1 + 0.1f * i));
                 Bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BulletSpeed);
             }
+        }
+    }
+
+    public float Health
+    {
+        get { return health; }
+    }
+
+    void TakeDamage(int value)
+    {
+        health -= value;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(10);
+
+            Debug.Log("health: " + health);
+
+            collision.gameObject.SetActive(false);
         }
     }
 }
