@@ -1,9 +1,13 @@
+using Items;
 using UnityEngine;
+//using static Item;
 
-public class Coin : Item
+public class Coin : Items.Item, IEffect
 {
     public override void DestroyAfterTime()
     {
+        Invoke("GetOpaque", 3f);
+                
         Invoke("DestroyThis", 5f);
     }
 
@@ -12,19 +16,25 @@ public class Coin : Item
         Destroy(gameObject);
     }
 
-    public override void ApplyItem()
+    public void GetOpaque()
     {
-        
-    }
-    
-    void Start()
-    {
-        
+        Color32 color = GetComponent<SpriteRenderer>().color;
+
+        GetComponent<SpriteRenderer>().color = new Color32(color.r, color.g, color.b, 50);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void ApplyItem()
     {
-        
+        DestroyThis();
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            ApplyItem();
+        }
+    }
+
+
 }

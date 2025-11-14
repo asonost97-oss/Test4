@@ -1,21 +1,31 @@
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+namespace Items
 {
-    public abstract void DestroyAfterTime();
-
-    public abstract void ApplyItem();
-
-    
-    
-    void Start()
+    public abstract class Item : MonoBehaviour
     {
-        DestroyAfterTime();
-    }
+        SpriteRenderer sr;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public abstract void DestroyAfterTime();
+
+        public abstract void ApplyItem();
+
+        void Start()
+        {
+            sr = GetComponent<SpriteRenderer>();
+
+            DestroyAfterTime();
+
+        }
+    }    
+}
+
+public interface IEffect
+{
+    void GetOpaque();
+}
+
+public enum EItems
+{
+    Coin, SpeedUp, PowerUp
 }
