@@ -21,14 +21,14 @@ public class ItemManager : MonoBehaviour
     
     void Start()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject prefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    GameObject prefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
 
-            Vector2 pos = points[Random.Range(0, points.Length)].GetPos();
+        //    Vector2 pos = points[Random.Range(0, points.Length)].GetPos();
 
-            SpawnItem(prefab, pos);
-        }
+        //    SpawnItem(prefab, pos);
+        //}
     }
 
     public void SpawnItem(GameObject itemPrefab, Vector2 position)

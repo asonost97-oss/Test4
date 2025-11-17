@@ -37,6 +37,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        EventManager.RunEnemyDieEvent();
+
         Destroy(this.gameObject);
     }
 
