@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 79d0452a4953cae46a0e867166c8dbb0
+  productGUID: 87d36266dfce7df4bb23695bb51e149d
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: "Class_\uB9AC\uB4EC\uAC8C\uC78401"
+  productName: Pf_Music Game(Basic)
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -141,8 +141,7 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -869,14 +868,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: "Class_\uB9AC\uB4EC\uAC8C\uC78401"
+  metroPackageName: Pf_Music Game(Basic)
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: "Class_\uB9AC\uB4EC\uAC8C\uC78401"
+  metroApplicationDescription: Pf_Music Game(Basic)
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -948,10 +947,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 1ce67a47-5e36-4ebe-a56e-7d15969bba38
+  cloudProjectId: 5a855f85-35da-4c00-8aa1-4aed38c5d520
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: "Class_\uB9AC\uB4EC\uAC8C\uC78401"
+  projectName: Pf_Music Game(Basic)
   organizationId: asonost97
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
