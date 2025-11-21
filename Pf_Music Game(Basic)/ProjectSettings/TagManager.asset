@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 3
   tags:
   - Point
+  - RemoveNote
+  - removeNoteTag
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Note
   - Water
   - UI
   - 

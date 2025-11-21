@@ -28,34 +28,34 @@ public class SelectManager : MonoBehaviour, IVolumeSetting
 
         selectNum = 0;
 
-        audioSource.PlayOneShot(audioClip[musicNum]);
-
         for(int i = 0; i < musicSelects.Length; i++)
         {
             musicSelects[i].SetActive(false);
         }
 
-        if(musicSelects.Length > 0)
-        {
-            musicSelects[0].SetActive(true);
-        }
-
         if (audioClip != null && audioClip.Length > 0)
         {
-            // musicNumÀÌ À¯È¿ÇÑ ¹üÀ§ÀÎÁö È®ÀÎ
+            // musicNumì˜ ìœ íš¨ì„± ë²”ìœ„ í™•ì¸
             if (musicNum >= 0 && musicNum < audioClip.Length)
             {
                 selectNum = musicNum;
-                // ÀÌÀü¿¡ ¼±ÅÃÇß´ø À½¾Ç UI È°¼ºÈ­
+                // ì´ì „ì— ì„ íƒí–ˆë˜ ìŒì•… UI í™œì„±í™”
                 if (selectNum < musicSelects.Length)
                 {
                     musicSelects[selectNum].SetActive(true);
                 }
-                audioSource.PlayOneShot(audioClip[musicNum]);
+                if (audioClip[musicNum] != null)
+                {
+                    audioSource.PlayOneShot(audioClip[musicNum]);
+                }
             }
             else
             {
-                // À¯È¿ÇÏÁö ¾ÊÀ¸¸é Ã¹ ¹øÂ° À½¾Ç Àç»ý
+                // ìœ íš¨í•˜ì§€ ì•Šìœ¼ë©´ ì²« ë²ˆì§¸ ìŒì•… ìž¬ìƒ
+                if (musicSelects.Length > 0)
+                {
+                    musicSelects[0].SetActive(true);
+                }
                 if (audioClip[0] != null)
                 {
                     audioSource.PlayOneShot(audioClip[0]);
@@ -82,19 +82,20 @@ public class SelectManager : MonoBehaviour, IVolumeSetting
     {
         if(btn == "RightButton")
         {
-            audioSource.Stop();
-
-            musicSelects[selectNum].SetActive(false);
-
-            selectNum++;
-
-            musicSelects[selectNum].SetActive(true);
-
-            audioSource.PlayOneShot(audioClip[selectNum]);
-
-            if (selectNum < audioClip.Length && audioClip[selectNum] != null)
+            if (selectNum < audioClip.Length - 1 && selectNum < musicSelects.Length - 1)
             {
-                audioSource.PlayOneShot(audioClip[selectNum]);
+                audioSource.Stop();
+
+                musicSelects[selectNum].SetActive(false);
+
+                selectNum++;
+
+                musicSelects[selectNum].SetActive(true);
+
+                if (selectNum < audioClip.Length && audioClip[selectNum] != null)
+                {
+                    audioSource.PlayOneShot(audioClip[selectNum]);
+                }
             }
         }
         else if(btn == "LeftButton")
@@ -103,13 +104,11 @@ public class SelectManager : MonoBehaviour, IVolumeSetting
             {
                 audioSource.Stop();
 
-                musicSelects[selectNum].SetActive(false) ;
+                musicSelects[selectNum].SetActive(false);
 
                 selectNum--;
 
-                musicSelects[selectNum].SetActive(true) ;
-
-                audioSource.PlayOneShot(audioClip[selectNum]);
+                musicSelects[selectNum].SetActive(true);
 
                 if (selectNum >= 0 && selectNum < audioClip.Length && audioClip[selectNum] != null)
                 {
