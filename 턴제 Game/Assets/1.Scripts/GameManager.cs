@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,9 +18,32 @@ public class GameManager : MonoBehaviour
     Text[] priestTxt;
     Text[] witchTxt;
 
+    public Slider turn;
+    public Text TurnTxt;
+    public float turnTime = 10f;
+
+    CoolTime ct;
+
+    public bool playTurn = true;
+    public bool monsterTurn = false;
+    public bool currentTurn = false;
+
+    public List<GameObject> L_Monster = new List<GameObject>();
+
+    public GameObject Monster1;
+    public GameObject Monster2;
+    public GameObject Monster3;
+
+    //public GameObject[] monsterStatus;
+    //Text[] monster1Txt;
+    //Text[] monster2Txt;
+    //Text[] monster3Txt;
+
     private void Awake()
     {
         instance = this;
+
+        ct = new CoolTime();
     }
 
     private void Start()
@@ -34,11 +58,58 @@ public class GameManager : MonoBehaviour
         priestTxt = status[1].GetComponentsInChildren<Text>();
         witchTxt = status[2].GetComponentsInChildren<Text>();
 
+        L_Monster.Add(Monster1);
+        L_Monster.Add(Monster2);
+        L_Monster.Add(Monster3);
+
     }
 
     private void Update()
     {
         StatusShow();
+
+        turn.value = ct.Timer(turnTime);
+
+        if(turn.value == 0)
+        {
+            playTurn = !playTurn;
+            currentTurn = !playTurn;
+
+            if (playTurn)
+            {
+                TurnTxt.text = "Player Turn";
+                monsterTurn = false;
+            }
+            else
+            {
+                monsterTurn = true;
+
+                TurnTxt.text = "Monster Turn";
+
+                StartCoroutine("MonsterAttack");
+            }
+        }
+
+        Debug.Log("currentTurn: " + currentTurn);
+
+        
+    }
+
+    IEnumerator MonsterAttack()
+    {
+        int i = 0;
+
+        while (monsterTurn)
+        {
+            if (L_Monster.Count != 0)
+            {
+                L_Monster[(i++) % L_Monster.Count].GetComponent<Monster>().NormalAttack();
+            }
+
+            yield return new WaitForSeconds(2f);
+        }
+
+        
     }
 
     //상태표시함수
