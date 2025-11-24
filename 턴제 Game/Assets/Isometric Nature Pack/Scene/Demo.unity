@@ -572,6 +572,7 @@ MonoBehaviour:
   oriPos: {x: 0, y: 0, z: 0}
   hp: 0
   maxHP: 0
+  home: 1
 --- !u!1 &162250352
 GameObject:
   m_ObjectHideFlags: 0
@@ -6005,6 +6006,7 @@ MonoBehaviour:
   oriPos: {x: 0, y: 0, z: 0}
   hp: 0
   maxHP: 0
+  home: 1
 --- !u!1 &635599854
 GameObject:
   m_ObjectHideFlags: 0
@@ -6453,6 +6455,7 @@ MonoBehaviour:
   oriPos: {x: 0, y: 0, z: 0}
   hp: 0
   maxHP: 0
+  home: 1
 --- !u!1 &742025601
 GameObject:
   m_ObjectHideFlags: 0
