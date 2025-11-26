@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
@@ -17,6 +18,9 @@ public class Monster : MonoBehaviour
 
     public bool home = true;
 
+    public GameObject damageCanvas;
+    TextMeshProUGUI tmpDamage;
+
     //public GameObject magicAura;
     //public Transform T_magicAura;
 
@@ -24,6 +28,8 @@ public class Monster : MonoBehaviour
 
     void Start()
     {
+        Player = GameObject.FindGameObjectsWithTag("Player");
+
         rb = GetComponent<Rigidbody2D>();
         oriPos = transform.position;
         ani = GetComponent<Animator>();
@@ -34,7 +40,7 @@ public class Monster : MonoBehaviour
 
     public void NormalAttack()
     {
-        if (GameManager.instance.currentTurn == false)
+        if (GameManager.instance.currentTurn == true)
         {
             StartCoroutine("NormalAttackCT");
         }
@@ -46,7 +52,9 @@ public class Monster : MonoBehaviour
         back = false;
         int r = Random.Range(0, Player.Length);
 
-        while(true)
+        Debug.Log("»£√‚");
+
+        while (true)
         {
             if ((Player[r] != null))
             {
@@ -73,6 +81,14 @@ public class Monster : MonoBehaviour
 
         ani.SetTrigger("Damage");
 
+        GameObject go = Instantiate(damageCanvas,transform.position, Quaternion.identity).gameObject;
+
+        go.transform.SetParent(transform);
+
+        tmpDamage = go.GetComponentInChildren<TextMeshProUGUI>();
+
+        tmpDamage.text = attack.ToString();
+
         if (monsterData.hp <= 0)
         {
             GameManager.instance.D_Player.Remove(monsterData.job);
@@ -88,12 +104,12 @@ public class Monster : MonoBehaviour
         {
             rb.MovePosition(Vector3.Lerp(transform.position, oriPos, 20 * Time.deltaTime));
 
-            if (Vector3.Distance(transform.position, oriPos) <= 0.5f)
-            {
-                transform.position = oriPos;
+            //if (Vector3.Distance(transform.position, oriPos) <= 0.5f)
+            //{
+            //    transform.position = oriPos;
 
-                home = true;
-            }
-        }
+            //    home = true;
+            //}
+        }        
     }
 }

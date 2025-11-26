@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,6 +19,9 @@ public class Player : MonoBehaviour
     public Transform T_magicAura;
 
     public GameObject explosion;
+
+    public GameObject damageCanvas;
+    TextMeshProUGUI tmpDamage;
 
 
     void Start()
@@ -57,7 +61,9 @@ public class Player : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, Monster[r].transform.position) <= 0.5f)
                 {
-                    ani.SetTrigger("Attack"); 
+                    ani.SetTrigger("Attack");
+
+                    Sound();
 
                     yield return new WaitForSeconds(0.03f);
                     back = true;
@@ -73,8 +79,16 @@ public class Player : MonoBehaviour
         playerData.hp -= attack;
 
         ani.SetTrigger("Damage");
+        
+        GameObject go = Instantiate(damageCanvas, transform.position, Quaternion.identity).gameObject;
 
-        if(playerData.hp <= 0)
+        go.transform.SetParent(transform);
+
+        tmpDamage = go.GetComponentInChildren<TextMeshProUGUI>();
+
+        tmpDamage.text = attack.ToString();
+
+        if (playerData.hp <= 0)
         {
             GameManager.instance.D_Player.Remove(playerData.job);
 
@@ -115,6 +129,24 @@ public class Player : MonoBehaviour
                 Instantiate(explosion, player[i].transform.position + Vector3.up * 0.8f, Quaternion.identity);
             }
         }
+    }
+
+    void Sound()
+    {
+        // if(playerData.job == "검사")
+        //{
+        //    SoundManager.instance.PlayAttackSound(8);
+        //}
+
+        // if(playerData.job == "신관")
+        //{
+        //    SoundManager.instance.PlayAttackSound(4);
+        //}
+
+        // if(playerData.job == "마법사")
+        //{
+        //    SoundManager.instance.PlayAttackSound(2);
+        //}
     }
 
     // Update is called once per frame
