@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public Transform T_magicAura;
 
     public GameObject explosion;
-    
+
 
     void Start()
     {
@@ -79,6 +79,41 @@ public class Player : MonoBehaviour
             GameManager.instance.D_Player.Remove(playerData.job);
 
             Destroy(this.gameObject);
+        }
+    }
+
+    public void SpecialAttack()
+    {
+        if (GameManager.instance.currentTurn == false && home)
+        {
+            StartCoroutine("SpecialAttackCT");
+        }
+    }
+
+    IEnumerator SpecialAttackCT()
+    {
+        Monster = GameObject.FindGameObjectsWithTag("Monster");
+
+        int r = Random.Range(0, Monster.Length);
+
+        Instantiate(magicAura, T_magicAura.position, T_magicAura.rotation);
+
+        yield return new WaitForSeconds(2.5f);
+
+        if (Monster[r] != null)
+        {
+            if(!playerData.job.Equals("½Å°ü"))
+            {
+                Instantiate(explosion, Monster[r].transform.position + Vector3.up * 0.8f, Quaternion.identity);
+            }
+            else
+            {
+                GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
+
+                int i = Random.Range(0, player.Length);
+                
+                Instantiate(explosion, player[i].transform.position + Vector3.up * 0.8f, Quaternion.identity);
+            }
         }
     }
 
