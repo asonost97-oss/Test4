@@ -66,15 +66,4 @@ public class TitleManager : MonoBehaviour
             yield return null;
         }
     }
-
-    public void Onslider()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
